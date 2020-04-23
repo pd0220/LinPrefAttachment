@@ -39,11 +39,16 @@ auto AddNode = [&](std::vector<int> &Nodes) {
     {
         // choose node uniformly
         int node{Rand(static_cast<int>(Nodes.size()))};
+        // degree of chosen node
         int k{Nodes[node]};
         // determine probability of connection
         double p{(double)(k / norm)};
         // to connect, or not to connect... this is the question
-        if (p < Rand(1))
+        // generate real random numbers from [0,1] interval
+        std::random_device rd{};
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<double> Uni(0, 1);
+        if (p > Uni(gen))
         {
             // increase degree
             Nodes[node] += 1;
