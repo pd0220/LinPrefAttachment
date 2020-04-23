@@ -8,9 +8,9 @@
 #include <random>
 
 // size of tree
-int const N{(int)1e6};
+int const N{(int)1e5};
 // file name to save results
-std::string const fileName{"data.txt"};
+std::string const fileName{"data_1node.txt"};
 
 // choose a random integer from given [0, high] interval uniformly --> choose a node from given set of nodes
 auto Rand = [](int const &high) {
@@ -38,11 +38,11 @@ auto AddNode = [&](std::vector<int> &Nodes) {
     while (stop == 0)
     {
         // choose node uniformly
-        int node{Rand(static_cast<int>(Nodes.size()))};
+        int node{Rand(static_cast<int>(Nodes.size() - 1))};
         // degree of chosen node
         int k{Nodes[node]};
         // determine probability of connection
-        double p{(double)(k / norm)};
+        double p{(double)k / (double)norm};
         // to connect, or not to connect... this is the question
         // generate real random numbers from [0,1] interval
         std::random_device rd{};
