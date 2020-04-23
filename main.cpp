@@ -48,7 +48,7 @@ auto AddNode = [&](std::vector<int> &Nodes) {
         std::random_device rd{};
         std::mt19937 gen(rd());
         std::uniform_real_distribution<double> Uni(0, 1);
-        if (p > Uni(gen))
+        if (Uni(gen) < p)
         {
             // increase degree
             Nodes[node] += 1;
