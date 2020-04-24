@@ -6,11 +6,12 @@
 #include <vector>
 #include <string>
 #include <random>
+#include <bits/stdc++.h>
 
 // size of tree
-int const N{(int)1e5};
+int const N{(int)2e3};
 // file name to save results
-std::string const fileName{"data_1node.txt"};
+std::string const fileName{"data_5nodeCross.txt"};
 
 // choose a random integer from given [0, high] interval uniformly --> choose a node from given set of nodes
 auto Rand = [](int const &high) {
@@ -74,14 +75,25 @@ int main(int, char **)
 {
     // number of starters nodes
     int starter{2};
+    //int starter{5};
     // container for nodes
     // initialization with given initial condition
     // from two nodes (equivalent to one node)
     std::vector<int> Nodes(starter, 1);
+    // five nodes in linear chain
+    //std::vector<int> Nodes{2, 1, 2, 2, 1};
+    // five nodes crossed
+    //std::vector<int> Nodes{4, 1, 1, 1, 1};
 
     // simulate node dynamics
     for (int i{starter}; i < N; i++)
+    {
         AddNode(Nodes);
+        //std::cout << i << std::endl;
+    }
+
+    // max degree
+    std::cout << *std::max_element(Nodes.begin(), Nodes.end()) << std::endl;
 
     // write to file final graph
     WriteToFile(Nodes);
